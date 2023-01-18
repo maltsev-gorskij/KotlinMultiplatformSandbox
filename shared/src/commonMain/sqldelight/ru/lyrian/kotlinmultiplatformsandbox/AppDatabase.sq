@@ -1,0 +1,20 @@
+CREATE TABLE LaunchEntity (
+    flightNumber    INTEGER NOT NULL,
+    missionName     TEXT    NOT NULL,
+    launchYear      INTEGER AS Int NOT NULL DEFAULT 0,
+    details         TEXT,
+    launchSuccess   INTEGER AS Boolean DEFAULT NULL,
+    launchDateUTC   TEXT    NOT NULL,
+    articleUrl      TEXT
+);
+
+insertLaunch:
+INSERT INTO LaunchEntity(flightNumber, missionName, launchYear, details, launchSuccess, launchDateUTC, articleUrl)
+VALUES(?, ?, ?, ?, ?, ?, ?);
+
+removeAllLaunches:
+DELETE FROM LaunchEntity;
+
+selectAllLaunchesInfo:
+SELECT *
+FROM LaunchEntity;
