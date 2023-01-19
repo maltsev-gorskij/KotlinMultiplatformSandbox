@@ -15,5 +15,4 @@ dependencies {
     implementation(libs.gradleplugins.kotlin)
     implementation(libs.gradleplugins.sqldelight)
     implementation(libs.gradleplugins.kotlinxserialization)
-    implementation(libs.gradleplugins.ksp)
 }
