@@ -28,15 +28,13 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.getViewModel
-import ru.lyrian.kotlinmultiplatformsandbox.android.destinations.LaunchDetailsRouteDestination
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.model.SpaceXLaunchesState
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.viewmodel.SpaceXLaunchesViewModel
 import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.cache.RocketLaunch
 
 @Composable
-fun Launches(navigator: DestinationsNavigator) {
+fun Launches() {
     val viewModel = getViewModel<SpaceXLaunchesViewModel>()
     val currentViewState by viewModel.viewState.collectAsState()
     val context = LocalContext.current
@@ -62,7 +60,9 @@ fun Launches(navigator: DestinationsNavigator) {
             LaunchesList(
                 viewState = currentViewState,
                 onRefresh = { viewModel.refresh(true) },
-                onLaunchClicked = { navigator.navigate(LaunchDetailsRouteDestination) }
+                onLaunchClicked = {
+                    /* TODO -- implement navigation action */
+                }
             )
         }
     }
@@ -88,6 +88,7 @@ private fun LaunchesHeader() {
     }
 }
 
+@Suppress("DEPRECATION")
 @Composable
 private fun LaunchesList(
     viewState: SpaceXLaunchesState,
@@ -137,8 +138,8 @@ private fun LaunchesListContent(
         } else {
             items(items = viewState.launches) {
                 LaunchesListItem(
-                    modifier = Modifier.clickable { onLaunchClicked() },
-                    rocketLaunch = it
+                    rocketLaunch = it,
+                    onLaunchClicked = onLaunchClicked
                 )
             }
         }
@@ -147,14 +148,18 @@ private fun LaunchesListContent(
 
 @Composable
 private fun LaunchesListItem(
-    modifier: Modifier = Modifier,
     rocketLaunch: RocketLaunch,
+    onLaunchClicked: () -> Unit
 ) {
     Card(
-        modifier = modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onLaunchClicked() },
+        shape = MaterialTheme.shapes.large
     ) {
         Column(
-            modifier = Modifier.padding(vertical = 12.dp, horizontal = 8.dp),
+            modifier = Modifier
+                .padding(vertical = 12.dp, horizontal = 8.dp),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {

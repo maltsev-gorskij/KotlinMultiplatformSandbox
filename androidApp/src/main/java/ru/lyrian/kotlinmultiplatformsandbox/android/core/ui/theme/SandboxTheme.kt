@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android
+package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
