@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace = "ru.lyrian.kotlinmultiplatformsandbox.android"
-    compileSdk = 33
+    compileSdk = AppConstants.compileSdk
 
     defaultConfig {
         applicationId = "ru.lyrian.kotlinmultiplatformsandbox.android"
-        minSdk = 21
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = AppConstants.minSdk
+        targetSdk = AppConstants.targetSdk
+        versionCode = AppConstants.versionCode
+        versionName = AppConstants.versionName
     }
 
     buildFeatures {
