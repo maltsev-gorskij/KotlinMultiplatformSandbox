@@ -25,16 +25,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import org.koin.androidx.compose.getViewModel
+import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.NavigationDestinations
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.model.SpaceXLaunchesState
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.viewmodel.SpaceXLaunchesViewModel
 import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.cache.RocketLaunch
 
 @Composable
-fun Launches() {
+fun SpaceXLaunchesScreen(navController: NavHostController) {
     val viewModel = getViewModel<SpaceXLaunchesViewModel>()
     val currentViewState by viewModel.viewState.collectAsState()
     val context = LocalContext.current
@@ -61,6 +63,7 @@ fun Launches() {
                 viewState = currentViewState,
                 onRefresh = { viewModel.refresh(true) },
                 onLaunchClicked = {
+                    navController.navigate(NavigationDestinations.LAUNCHES_DETAILS.route)
                     /* TODO -- implement navigation action */
                 }
             )

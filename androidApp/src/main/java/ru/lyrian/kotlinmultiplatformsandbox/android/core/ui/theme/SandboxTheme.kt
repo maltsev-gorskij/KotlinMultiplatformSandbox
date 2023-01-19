@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MyApplicationTheme(
+fun SandboxTheme(
     content: @Composable () -> Unit
 ) {
     val colors = lightColors(
