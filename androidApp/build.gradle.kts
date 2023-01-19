@@ -2,7 +2,6 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("com.google.devtools.ksp")
 }
 
 android {
@@ -52,14 +51,6 @@ android {
             jvmTarget = "11"
         }
     }
-
-    applicationVariants.all {
-        kotlin.sourceSets {
-            getByName(name) {
-                kotlin.srcDir("build/generated/ksp/$name/kotlin")
-            }
-        }
-    }
 }
 
 dependencies {
@@ -75,10 +66,6 @@ dependencies {
     // Koin DI for Android and Compose
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
-
-    // Compose destinations
-    implementation(libs.compose.destinations.core)
-    ksp(libs.compose.destinations.ksp)
 
     // Unit testing
     testImplementation(libs.koin.test)
