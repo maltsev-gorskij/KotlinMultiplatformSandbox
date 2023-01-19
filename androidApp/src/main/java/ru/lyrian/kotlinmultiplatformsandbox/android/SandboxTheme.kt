@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.ui
+package ru.lyrian.kotlinmultiplatformsandbox.android
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
