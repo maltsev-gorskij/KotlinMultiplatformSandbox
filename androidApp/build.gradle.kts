@@ -1,6 +1,8 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -50,14 +52,35 @@ android {
             jvmTarget = "11"
         }
     }
+
+    applicationVariants.all {
+        kotlin.sourceSets {
+            getByName(name) {
+                kotlin.srcDir("build/generated/ksp/$name/kotlin")
+            }
+        }
+    }
 }
 
 dependencies {
+    // Importing shared module with typesafe gradle accessor
     implementation(projects.shared)
+
+    // All compose ui related dependencies bundle
     implementation(libs.bundles.compose)
+
+    // Coroutines
     implementation(libs.coroutines.android)
+
+    // Koin DI for Android and Compose
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
+
+    // Compose destinations
+    implementation(libs.compose.destinations.core)
+    ksp(libs.compose.destinations.ksp)
+
+    // Unit testing
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.test.junit)
     testImplementation(libs.junit)
