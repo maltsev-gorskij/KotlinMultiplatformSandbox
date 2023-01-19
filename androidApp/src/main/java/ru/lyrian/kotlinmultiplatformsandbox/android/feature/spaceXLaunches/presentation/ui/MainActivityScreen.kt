@@ -1,5 +1,6 @@
 package ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,11 +16,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
@@ -31,6 +34,18 @@ import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.prese
 @Composable
 fun SpaceXContent(viewModel: MainActivityViewModel = koinViewModel()) {
     val currentViewState by viewModel.viewState.collectAsState()
+    val context = LocalContext.current
+
+    LaunchedEffect(true) {
+        viewModel.refresh()
+        viewModel.event.collect {
+            when (it) {
+                is MainActivityEvent.ShowToast -> {
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
     Surface(
         modifier = Modifier.fillMaxSize(),

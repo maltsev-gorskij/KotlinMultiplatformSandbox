@@ -20,7 +20,7 @@ class MainActivityViewModel constructor(private val spaceXSdk: SpaceXSDK): ViewM
     private val _viewState = MutableStateFlow(MainActivityViewState())
     val viewState = _viewState.asStateFlow()
 
-    private val _event = MutableSharedFlow<MainActivityEvent>() // private mutable shared flow
+    private val _event = MutableSharedFlow<MainActivityEvent>()
     val event = _event.asSharedFlow()
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -53,6 +53,8 @@ class MainActivityViewModel constructor(private val spaceXSdk: SpaceXSDK): ViewM
                     launches = launches
                 )
             }
+
+            if(forceReload) _event.emit(MainActivityEvent.ShowToast("Reload completed"))
         }
     }
 }
