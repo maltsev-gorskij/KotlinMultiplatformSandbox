@@ -28,11 +28,11 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import org.koin.androidx.compose.koinViewModel
-import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.model.MainActivityViewState
-import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.viewmodel.MainActivityViewModel
+import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.model.SpaceXLaunchesState
+import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.viewmodel.SpaceXLaunchesViewModel
 
 @Composable
-fun SpaceXContent(viewModel: MainActivityViewModel = koinViewModel()) {
+fun SpaceXContent(viewModel: SpaceXLaunchesViewModel = koinViewModel()) {
     val currentViewState by viewModel.viewState.collectAsState()
     val context = LocalContext.current
 
@@ -40,7 +40,7 @@ fun SpaceXContent(viewModel: MainActivityViewModel = koinViewModel()) {
         viewModel.refresh()
         viewModel.event.collect {
             when (it) {
-                is MainActivityEvent.ShowToast -> {
+                is SpaceXLaunchesEvent.ShowToast -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -85,7 +85,7 @@ private fun SpaceXHeader() {
 
 @Composable
 private fun SpaceXLaunches(
-    viewState: MainActivityViewState,
+    viewState: SpaceXLaunchesState,
     onRefresh: () -> Unit
 ) {
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = viewState.isLoading)
@@ -106,7 +106,7 @@ private fun SpaceXLaunches(
 }
 
 @Composable
-private fun SpaceXLaunchesList(viewState: MainActivityViewState) {
+private fun SpaceXLaunchesList(viewState: SpaceXLaunchesState) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(vertical = 4.dp, horizontal = 8.dp),
