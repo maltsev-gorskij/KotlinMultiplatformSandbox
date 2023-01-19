@@ -64,7 +64,6 @@ fun SpaceXLaunchesScreen(navController: NavHostController) {
                 onRefresh = { viewModel.refresh(true) },
                 onLaunchClicked = {
                     navController.navigate(NavigationDestinations.LAUNCHES_DETAILS.route)
-                    /* TODO -- implement navigation action */
                 }
             )
         }
