@@ -1,6 +1,7 @@
 package ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.ui
 
 import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,12 +28,15 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.getViewModel
+import ru.lyrian.kotlinmultiplatformsandbox.android.destinations.LaunchDetailsRouteDestination
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.model.SpaceXLaunchesState
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.viewmodel.SpaceXLaunchesViewModel
+import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.cache.RocketLaunch
 
 @Composable
-fun SpaceXContent() {
+fun Launches(navigator: DestinationsNavigator) {
     val viewModel = getViewModel<SpaceXLaunchesViewModel>()
     val currentViewState by viewModel.viewState.collectAsState()
     val context = LocalContext.current
@@ -54,17 +58,18 @@ fun SpaceXContent() {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-            SpaceXHeader()
-            SpaceXLaunches(
+            LaunchesHeader()
+            LaunchesList(
                 viewState = currentViewState,
-                onRefresh = { viewModel.refresh(true) }
+                onRefresh = { viewModel.refresh(true) },
+                onLaunchClicked = { navigator.navigate(LaunchDetailsRouteDestination) }
             )
         }
     }
 }
 
 @Composable
-private fun SpaceXHeader() {
+private fun LaunchesHeader() {
     Box(
         Modifier.fillMaxWidth()
     ) {
@@ -84,9 +89,10 @@ private fun SpaceXHeader() {
 }
 
 @Composable
-private fun SpaceXLaunches(
+private fun LaunchesList(
     viewState: SpaceXLaunchesState,
-    onRefresh: () -> Unit
+    onRefresh: () -> Unit,
+    onLaunchClicked: () -> Unit
 ) {
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = viewState.isLoading)
 
@@ -101,12 +107,18 @@ private fun SpaceXLaunches(
             )
         }
     ) {
-        SpaceXLaunchesList(viewState)
+        LaunchesListContent(
+            viewState = viewState,
+            onLaunchClicked = onLaunchClicked
+        )
     }
 }
 
 @Composable
-private fun SpaceXLaunchesList(viewState: SpaceXLaunchesState) {
+private fun LaunchesListContent(
+    viewState: SpaceXLaunchesState,
+    onLaunchClicked: () -> Unit
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(vertical = 4.dp, horizontal = 8.dp),
@@ -124,39 +136,50 @@ private fun SpaceXLaunchesList(viewState: SpaceXLaunchesState) {
             }
         } else {
             items(items = viewState.launches) {
-                Card(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Column(
-                        modifier = Modifier.padding(vertical = 12.dp, horizontal = 8.dp),
-                        horizontalAlignment = Alignment.Start,
-                        verticalArrangement = Arrangement.spacedBy(6.dp)
-                    ) {
-                        Text(
-                            text = "Launch name: ${it.missionName}",
-                            style = MaterialTheme.typography.caption
-                        )
-                        Text(
-                            text = if (it.launchSuccess == true) "Successful" else "Unsuccessful",
-                            style = MaterialTheme.typography.caption.copy(
-                                color = if (it.launchSuccess == false) {
-                                    MaterialTheme.colors.error
-                                } else {
-                                    LocalTextStyle.current.color
-                                }
-                            )
-                        )
-                        Text(
-                            text = "Launch year: ${it.launchYear}",
-                            style = MaterialTheme.typography.caption
-                        )
-                        Text(
-                            text = "Launch details: ${it.details ?: ""}",
-                            style = MaterialTheme.typography.caption
-                        )
-                    }
-                }
+                LaunchesListItem(
+                    modifier = Modifier.clickable { onLaunchClicked() },
+                    rocketLaunch = it
+                )
             }
+        }
+    }
+}
+
+@Composable
+private fun LaunchesListItem(
+    modifier: Modifier = Modifier,
+    rocketLaunch: RocketLaunch,
+) {
+    Card(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        Column(
+            modifier = Modifier.padding(vertical = 12.dp, horizontal = 8.dp),
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            Text(
+                text = "Launch name: ${rocketLaunch.missionName}",
+                style = MaterialTheme.typography.caption
+            )
+            Text(
+                text = if (rocketLaunch.launchSuccess == true) "Successful" else "Unsuccessful",
+                style = MaterialTheme.typography.caption.copy(
+                    color = if (rocketLaunch.launchSuccess == false) {
+                        MaterialTheme.colors.error
+                    } else {
+                        LocalTextStyle.current.color
+                    }
+                )
+            )
+            Text(
+                text = "Launch year: ${rocketLaunch.launchYear}",
+                style = MaterialTheme.typography.caption
+            )
+            Text(
+                text = "Launch details: ${rocketLaunch.details ?: ""}",
+                style = MaterialTheme.typography.caption
+            )
         }
     }
 }
