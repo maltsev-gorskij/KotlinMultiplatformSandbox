@@ -36,6 +36,10 @@ class SpaceXLaunchesViewModel constructor(private val spaceXSdk: SpaceXSDK): Vie
         }
     }
 
+    init {
+        refresh()
+    }
+
     fun refresh(forceReload: Boolean = false) {
         viewModelScope.launch(coroutineExceptionHandler) {
             _viewState.update {

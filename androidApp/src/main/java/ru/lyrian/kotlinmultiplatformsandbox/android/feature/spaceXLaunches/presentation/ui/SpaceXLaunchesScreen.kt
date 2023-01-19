@@ -27,17 +27,17 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import org.koin.androidx.compose.koinViewModel
+import org.koin.androidx.compose.getViewModel
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.model.SpaceXLaunchesState
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.viewmodel.SpaceXLaunchesViewModel
 
 @Composable
-fun SpaceXContent(viewModel: SpaceXLaunchesViewModel = koinViewModel()) {
+fun SpaceXContent() {
+    val viewModel = getViewModel<SpaceXLaunchesViewModel>()
     val currentViewState by viewModel.viewState.collectAsState()
     val context = LocalContext.current
 
     LaunchedEffect(true) {
-        viewModel.refresh()
         viewModel.event.collect {
             when (it) {
                 is SpaceXLaunchesEvent.ShowToast -> {
