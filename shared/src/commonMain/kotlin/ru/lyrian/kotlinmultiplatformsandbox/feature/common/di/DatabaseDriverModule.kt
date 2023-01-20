@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.di
+package ru.lyrian.kotlinmultiplatformsandbox.feature.common.di
 
 import org.koin.core.module.Module
 

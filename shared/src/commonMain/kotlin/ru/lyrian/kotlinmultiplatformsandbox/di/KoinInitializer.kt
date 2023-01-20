@@ -7,7 +7,7 @@ import org.koin.core.context.startKoin
 fun initializeKoin(koinApplication: KoinApplication.() -> Unit) {
     startKoin {
         koinApplication()
-        modules(commonModules())
+        modules(commonModules() + featureModules())
     }
 }
 

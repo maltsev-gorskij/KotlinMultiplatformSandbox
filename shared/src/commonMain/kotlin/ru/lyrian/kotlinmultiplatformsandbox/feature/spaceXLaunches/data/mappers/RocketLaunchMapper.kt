@@ -1,6 +1,6 @@
 package ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.mappers
 
-import ru.lyrian.kotlinmultiplatformsandbox.core.toYear
+import ru.lyrian.kotlinmultiplatformsandbox.core.utils.toYear
 import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.api.RocketLaunchResponse
 import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.cache.RocketLaunch
 
