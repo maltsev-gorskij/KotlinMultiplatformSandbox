@@ -7,16 +7,16 @@ sealed class BottomNavItems(val title: String, val icon: Int, val route: String)
     object Launches : BottomNavItems(
         title = BottomNavTitles.LIST_TITLE,
         icon = R.drawable.ic_list,
-        route = NavigationDestinations.LAUNCHES_LIST
+        route = NavigationDestinations.HomeNavGraph.LAUNCHES
     )
     object Favorites : BottomNavItems(
         title = BottomNavTitles.FAVORITES_TITLE,
         icon = R.drawable.ic_favorites,
-        route = NavigationDestinations.LAUNCHES_FAVORITES
+        route = NavigationDestinations.HomeNavGraph.FAVORITES
     )
     object Profile : BottomNavItems(
         title = BottomNavTitles.PROFILE_TITLE,
         icon = R.drawable.ic_profile,
-        route = NavigationDestinations.PROFILE
+        route = NavigationDestinations.HomeNavGraph.PROFILE
     )
 }

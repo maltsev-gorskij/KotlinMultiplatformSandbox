@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation
+package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navGraphs
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,16 +7,29 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.bottomNavigation.BottomNavItems
+import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.NavigationDestinations
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.ui.LaunchesListScreen
 
 @Composable
-fun NavigationRoot(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = NavigationDestinations.LAUNCHES_LIST) {
-        composable(NavigationDestinations.LAUNCHES_LIST) { LaunchesListScreen(navController) }
-        composable(NavigationDestinations.LAUNCHES_FAVORITES) {
+fun HomeNavGraph(navController: NavHostController) {
+    NavHost(
+        navController = navController,
+        route = NavGraphsDestinations.HOME,
+        startDestination = BottomNavItems.Launches.route
+    ) {
+        composable(NavigationDestinations.HomeNavGraph.LAUNCHES) {
+            LaunchesListScreen(
+                onLaunchClicked = {
+                    navController.navigate(NavigationDestinations.DetailsNavGraph.DETAILS)
+                }
+            )
+        }
+        composable(NavigationDestinations.HomeNavGraph.FAVORITES) {
             Surface(modifier = Modifier.fillMaxSize()) {
                 Box {
                     Text(
@@ -26,7 +39,7 @@ fun NavigationRoot(navController: NavHostController) {
                 }
             }
         }
-        composable(NavigationDestinations.PROFILE) {
+        composable(BottomNavItems.Profile.route) {
             Surface(modifier = Modifier.fillMaxSize()) {
                 Box {
                     Text(
@@ -36,15 +49,6 @@ fun NavigationRoot(navController: NavHostController) {
                 }
             }
         }
-        composable(NavigationDestinations.LAUNCHES_DETAILS) {
-            Surface(modifier = Modifier.fillMaxSize()) {
-                Box {
-                    Text(
-                        modifier = Modifier.align(Alignment.Center),
-                        text = "Details placeholder"
-                    )
-                }
-            }
-        }
+        detailsNavGraph()
     }
 }

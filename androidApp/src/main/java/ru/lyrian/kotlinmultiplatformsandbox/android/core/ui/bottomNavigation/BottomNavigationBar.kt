@@ -7,21 +7,36 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
-fun BottomNavigationBar(navController: NavController) {
+fun BottomNavigationBar(navController: NavHostController) {
     val items = listOf(
         BottomNavItems.Launches,
         BottomNavItems.Favorites,
         BottomNavItems.Profile
     )
 
-    BottomNavigation {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+    val shouldShowBottomNavBar = items.any { it.route == currentRoute }
+    if(shouldShowBottomNavBar) {
+        BottomNavBarContent(
+            items = items,
+            currentRoute = currentRoute,
+            navController = navController
+        )
+    }
+}
 
+@Composable
+private fun BottomNavBarContent(
+    items: List<BottomNavItems>,
+    currentRoute: String?,
+    navController: NavHostController,
+) {
+    BottomNavigation {
         items.forEach { item: BottomNavItems ->
             BottomNavigationItem(
                 selected = currentRoute == item.route,
@@ -42,7 +57,6 @@ fun BottomNavigationBar(navController: NavController) {
                         contentDescription = item.title
                     )
                 },
-                enabled = true,
                 label = { Text(text = item.title) },
                 alwaysShowLabel = false,
             )
