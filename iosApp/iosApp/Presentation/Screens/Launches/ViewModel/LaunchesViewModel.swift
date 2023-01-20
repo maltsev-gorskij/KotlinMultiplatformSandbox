@@ -10,20 +10,20 @@ import Foundation
 import shared
 
 final class LaunchesViewModel: ObservableObject {
-  private let sdk: SpaceXSDK
+  private let interactor: LaunchesInteractor
 
   @Published private(set) var launches: [RocketLaunch] = []
   @Published private(set) var toast: Toast?
 
   private var timer: Timer?
 
-  init(sdk: SpaceXSDK) {
-    self.sdk = sdk
+  init(interactor: LaunchesInteractor) {
+    self.interactor = interactor
     loadLaunches(forceReload: false)
   }
 
   func loadLaunches(forceReload: Bool) {
-    sdk.getLaunches(forceReload: forceReload) { [weak self] launches, error in
+    interactor.getAllLaunches(forceReload: forceReload) { [weak self] launches, error in
       guard let self = self else { return }
       if let error = error {
         self.shownToast(toast: .failed)
