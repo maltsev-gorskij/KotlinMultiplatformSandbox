@@ -1,17 +1,19 @@
 package ru.lyrian.kotlinmultiplatformsandbox.data.dataSource.launchesApi
 
-import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import ru.lyrian.kotlinmultiplatformsandbox.core.constants.KtorConstants
 import ru.lyrian.kotlinmultiplatformsandbox.domain.launches.RocketLaunch
 
 internal class LaunchesListApi(
     private val rocketLaunchApiMapper: RocketLaunchApiMapper,
-    private val httpClient: HttpClient
+    spaceXApiClientProvider: SpaceXApiClientProvider
 ) {
+    private val client = spaceXApiClientProvider.client
+
     internal suspend fun getAllLaunches(): List<RocketLaunch> {
-        val result: List<RocketLaunchResponse> = httpClient
-            .get("https://api.spacexdata.com/v5/launches")
+        val result: List<RocketLaunchResponse> = client
+            .get(KtorConstants.SPACEX_LAUNCHES_ENDPOINT)
             .body()
 
         return result
