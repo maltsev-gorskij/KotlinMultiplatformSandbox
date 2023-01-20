@@ -1,22 +1,33 @@
 package ru.lyrian.kotlinmultiplatformsandbox.data.repository.launches
 
 import ru.lyrian.kotlinmultiplatformsandbox.AppDatabaseQueries
+import ru.lyrian.kotlinmultiplatformsandbox.data.dataSource.launchesApi.LaunchesListApi
+import ru.lyrian.kotlinmultiplatformsandbox.data.dataSource.launchesApi.RocketLaunchResponse
 import ru.lyrian.kotlinmultiplatformsandbox.domain.launches.RocketLaunch
 
 internal class LaunchesRepository(
+    private val launchesListApi: LaunchesListApi,
     private val appDatabaseQueries: AppDatabaseQueries,
-    private val rocketLaunchDatabaseMapper: RocketLaunchDatabaseMapper
+    private val rocketLaunchMapper: RocketLaunchMapper
 ) {
+    internal suspend fun getUpToDateLaunches(): List<RocketLaunch> {
+        val launches: List<RocketLaunchResponse> = launchesListApi.getAllLaunches()
+
+        return launches
+            .filter { it.staticFireDateUtc != null }
+            .map { rocketLaunchMapper(it) }
+    }
+
     internal fun clearDatabase() {
         appDatabaseQueries.removeAllLaunches()
     }
 
-    internal fun getAllLaunches(): List<RocketLaunch> {
+    internal fun getAllCachedLaunches(): List<RocketLaunch> {
         return appDatabaseQueries
             .selectAllLaunchesInfo()
             .executeAsList()
             .map {
-                rocketLaunchDatabaseMapper(it)
+                rocketLaunchMapper(it)
             }
     }
 
