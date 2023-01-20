@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.common.di
+package ru.lyrian.kotlinmultiplatformsandbox.feature.common.data.cache.di
 
 import org.koin.core.module.Module
 

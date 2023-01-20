@@ -18,6 +18,7 @@ internal val apiClientModule = module {
                         ignoreUnknownKeys = true
                         useAlternativeNames = false
                         isLenient = true
+                        encodeDefaults = true
                     }
                 )
             }
