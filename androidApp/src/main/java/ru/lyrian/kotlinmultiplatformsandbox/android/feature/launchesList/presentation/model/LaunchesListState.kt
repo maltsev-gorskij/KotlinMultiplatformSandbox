@@ -1,6 +1,6 @@
 package ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.model
 
-import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain.RocketLaunch
+import ru.lyrian.kotlinmultiplatformsandbox.domain.launches.RocketLaunch
 
 data class LaunchesListState(
     val launches: List<RocketLaunch> = listOf(),

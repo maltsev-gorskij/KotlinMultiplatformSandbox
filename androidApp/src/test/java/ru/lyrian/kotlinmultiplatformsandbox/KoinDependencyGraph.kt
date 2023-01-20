@@ -16,7 +16,7 @@ import org.koin.test.check.checkModules
 import org.koin.test.mock.MockProviderRule
 import org.mockito.Mockito
 import ru.lyrian.kotlinmultiplatformsandbox.android.di.androidModules
-import ru.lyrian.kotlinmultiplatformsandbox.di.commonModules
+import ru.lyrian.kotlinmultiplatformsandbox.core.di.sharedModules
 
 class KoinDependencyGraph {
     @ExperimentalCoroutinesApi
@@ -31,7 +31,7 @@ class KoinDependencyGraph {
     @Test
     fun verifyKoinGraph() {
         koinApplication {
-            modules(commonModules() + androidModules())
+            modules(sharedModules() + androidModules())
             checkModules() {
                 withInstance<Context>()
             }
