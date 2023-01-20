@@ -1,10 +1,9 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.mappers
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.api
 
 import ru.lyrian.kotlinmultiplatformsandbox.core.utils.toYear
-import ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.api.RocketLaunchResponse
-import ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.cache.RocketLaunch
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain.RocketLaunch
 
-internal class RocketLaunchMapper {
+internal class RocketLaunchApiMapper {
     operator fun invoke(rocketLaunchResponse: RocketLaunchResponse): RocketLaunch =
         RocketLaunch(
             flightNumber = rocketLaunchResponse.flightNumber,

@@ -1,13 +1,12 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.api
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.api
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
-import ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.cache.RocketLaunch
-import ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.mappers.RocketLaunchMapper
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain.RocketLaunch
 
 internal class LaunchesListApi(
-    private val rocketLaunchMapper: RocketLaunchMapper,
+    private val rocketLaunchApiMapper: RocketLaunchApiMapper,
     private val httpClient: HttpClient
 ) {
     suspend fun getAllLaunches(): List<RocketLaunch> {
@@ -17,6 +16,6 @@ internal class LaunchesListApi(
 
         return result
             .filter { it.staticFireDateUtc != null }
-            .map { rocketLaunchMapper(it) }
+            .map { rocketLaunchApiMapper(it) }
     }
 }

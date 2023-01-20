@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.api
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.api
 
 
 import kotlinx.serialization.SerialName
@@ -11,7 +11,7 @@ internal data class RocketLaunchResponse(
     @SerialName("details")
     val details: String?,
     @SerialName("flight_number")
-    val flightNumber: Int,
+    val flightNumber: Long,
     @SerialName("links")
     val links: Links,
     @SerialName("name")
