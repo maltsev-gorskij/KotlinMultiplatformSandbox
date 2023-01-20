@@ -1,8 +1,8 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.mappers
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.mappers
 
 import ru.lyrian.kotlinmultiplatformsandbox.core.utils.toYear
-import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.api.RocketLaunchResponse
-import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.cache.RocketLaunch
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.api.RocketLaunchResponse
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.cache.RocketLaunch
 
 internal class RocketLaunchMapper {
     operator fun invoke(rocketLaunchResponse: RocketLaunchResponse): RocketLaunch =

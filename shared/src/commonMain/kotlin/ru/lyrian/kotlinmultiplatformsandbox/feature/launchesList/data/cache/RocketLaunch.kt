@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.cache
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.cache
 
 data class RocketLaunch(
     val flightNumber: Int,

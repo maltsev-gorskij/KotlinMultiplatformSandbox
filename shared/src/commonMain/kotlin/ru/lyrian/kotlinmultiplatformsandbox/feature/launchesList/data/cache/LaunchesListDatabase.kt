@@ -1,8 +1,8 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.cache
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.cache
 
 import ru.lyrian.kotlinmultiplatformsandbox.AppDatabaseQueries
 
-internal class Database(private val appDatabaseQueries: AppDatabaseQueries) {
+internal class LaunchesListDatabase(private val appDatabaseQueries: AppDatabaseQueries) {
     internal fun clearDatabase() {
         appDatabaseQueries.removeAllLaunches()
     }
