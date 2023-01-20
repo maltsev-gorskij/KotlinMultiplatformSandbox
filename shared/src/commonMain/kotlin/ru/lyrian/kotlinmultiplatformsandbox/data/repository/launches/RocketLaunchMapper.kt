@@ -1,9 +1,11 @@
-package ru.lyrian.kotlinmultiplatformsandbox.data.dataSource.launchesApi
+package ru.lyrian.kotlinmultiplatformsandbox.data.repository.launches
 
+import ru.lyrian.kotlinmultiplatformsandbox.LaunchEntity
 import ru.lyrian.kotlinmultiplatformsandbox.core.utils.toYear
+import ru.lyrian.kotlinmultiplatformsandbox.data.dataSource.launchesApi.RocketLaunchResponse
 import ru.lyrian.kotlinmultiplatformsandbox.domain.launches.RocketLaunch
 
-internal class RocketLaunchApiMapper {
+internal class RocketLaunchMapper {
     internal operator fun invoke(rocketLaunchResponse: RocketLaunchResponse): RocketLaunch =
         RocketLaunch(
             flightNumber = rocketLaunchResponse.flightNumber,
@@ -13,5 +15,16 @@ internal class RocketLaunchApiMapper {
             details = rocketLaunchResponse.details ?: "",
             launchSuccess = rocketLaunchResponse.success ?: false,
             articleUrl = rocketLaunchResponse.links.article ?: ""
+        )
+
+    internal operator fun invoke(launchEntity: LaunchEntity): RocketLaunch =
+        RocketLaunch(
+            flightNumber = launchEntity.flightNumber,
+            missionName = launchEntity.missionName,
+            launchYear = launchEntity.launchYear,
+            launchDateUTC = launchEntity.launchDateUTC,
+            details = launchEntity.details,
+            launchSuccess = launchEntity.launchSuccess,
+            articleUrl = launchEntity.articleUrl
         )
 }

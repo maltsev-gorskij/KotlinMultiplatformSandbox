@@ -1,10 +1,11 @@
 package ru.lyrian.kotlinmultiplatformsandbox.data.repository.di
 
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import ru.lyrian.kotlinmultiplatformsandbox.data.repository.launches.LaunchesRepository
-import ru.lyrian.kotlinmultiplatformsandbox.data.repository.launches.RocketLaunchDatabaseMapper
+import ru.lyrian.kotlinmultiplatformsandbox.data.repository.launches.RocketLaunchMapper
 
 internal val repositoryModule = module {
-    single { LaunchesRepository(get(), get()) }
-    single { RocketLaunchDatabaseMapper() }
+    singleOf(::LaunchesRepository)
+    singleOf(::RocketLaunchMapper)
 }
