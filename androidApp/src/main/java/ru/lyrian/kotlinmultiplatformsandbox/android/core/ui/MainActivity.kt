@@ -3,7 +3,6 @@ package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.NavigationRoot
 import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.theme.SandboxTheme
 
 class MainActivity : ComponentActivity() {
@@ -12,7 +11,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             SandboxTheme {
-                NavigationRoot()
+                MainActivityScreen()
             }
         }
     }

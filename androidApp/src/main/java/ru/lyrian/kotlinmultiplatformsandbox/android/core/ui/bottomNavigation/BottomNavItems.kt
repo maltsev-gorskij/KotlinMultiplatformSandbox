@@ -1,22 +1,22 @@
 package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.bottomNavigation
 
-import androidx.annotation.DrawableRes
 import ru.lyrian.kotlinmultiplatformsandbox.android.R
+import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.NavigationDestinations
 
-enum class BottomNavItems(val title: String, @DrawableRes val icon: Int, val route: String) {
-    LAUNCHES_LIST(
+sealed class BottomNavItems(val title: String, val icon: Int, val route: String) {
+    object Launches : BottomNavItems(
         title = BottomNavTitles.LIST_TITLE,
         icon = R.drawable.ic_list,
-        route = LAUNCHES_LIST.route
-    ),
-    LAUNCHES_FAVORITES(
+        route = NavigationDestinations.LAUNCHES_LIST
+    )
+    object Favorites : BottomNavItems(
         title = BottomNavTitles.FAVORITES_TITLE,
         icon = R.drawable.ic_favorites,
-        route = LAUNCHES_FAVORITES.route
-    ),
-    PROFILE(
+        route = NavigationDestinations.LAUNCHES_FAVORITES
+    )
+    object Profile : BottomNavItems(
         title = BottomNavTitles.PROFILE_TITLE,
         icon = R.drawable.ic_profile,
-        route = PROFILE.route
+        route = NavigationDestinations.PROFILE
     )
 }
