@@ -63,7 +63,7 @@ fun LaunchesListScreen(navController: NavHostController) {
                 viewState = currentViewState,
                 onRefresh = { viewModel.refresh(true) },
                 onLaunchClicked = {
-                    navController.navigate(NavigationDestinations.LAUNCHES_DETAILS.route)
+                    navController.navigate(NavigationDestinations.LAUNCHES_DETAILS)
                 }
             )
         }
