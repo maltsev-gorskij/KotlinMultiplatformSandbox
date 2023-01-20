@@ -12,6 +12,13 @@
 		1A0A3B7E297025F00051AE97 /* RocketLaunchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A3B7D297025F00051AE97 /* RocketLaunchRow.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		E3BC9B62297ABE470055D24D /* LaunchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BC9B61297ABE470055D24D /* LaunchesView.swift */; };
+		E3BC9B64297ABE500055D24D /* LaunchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BC9B63297ABE500055D24D /* LaunchesViewModel.swift */; };
+		E3BC9B68297ABE890055D24D /* KMM+Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BC9B67297ABE890055D24D /* KMM+Modules.swift */; };
+		E3BC9B6C297AC6330055D24D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BC9B6B297AC6330055D24D /* ToastView.swift */; };
+		E3BC9B6F297AC6700055D24D /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BC9B6E297AC6700055D24D /* Toast.swift */; };
+		E3D74570297AD28B00BDC242 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D7456F297AD28B00BDC242 /* ProfileView.swift */; };
+		E3D74572297AD29100BDC242 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D74571297AD29100BDC242 /* FavoritesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +42,13 @@
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3BC9B61297ABE470055D24D /* LaunchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesView.swift; sourceTree = "<group>"; };
+		E3BC9B63297ABE500055D24D /* LaunchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewModel.swift; sourceTree = "<group>"; };
+		E3BC9B67297ABE890055D24D /* KMM+Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KMM+Modules.swift"; sourceTree = "<group>"; };
+		E3BC9B6B297AC6330055D24D /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		E3BC9B6E297AC6700055D24D /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		E3D7456F297AD28B00BDC242 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		E3D74571297AD29100BDC242 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,12 +90,14 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				E3BC9B6D297AC6660055D24D /* Models */,
+				E3BC9B69297AC6210055D24D /* Presentation */,
+				E3BC9B65297ABE5E0055D24D /* Helpers */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
-				1A0A3B7D297025F00051AE97 /* RocketLaunchRow.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -91,6 +107,107 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E3BC9B5E297ABE2C0055D24D /* Launches */ = {
+			isa = PBXGroup;
+			children = (
+				E3BC9B60297ABE390055D24D /* ViewModel */,
+				E3BC9B5F297ABE350055D24D /* View */,
+			);
+			path = Launches;
+			sourceTree = "<group>";
+		};
+		E3BC9B5F297ABE350055D24D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1A0A3B7D297025F00051AE97 /* RocketLaunchRow.swift */,
+				E3BC9B61297ABE470055D24D /* LaunchesView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E3BC9B60297ABE390055D24D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3BC9B63297ABE500055D24D /* LaunchesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E3BC9B65297ABE5E0055D24D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E3BC9B66297ABE6D0055D24D /* Extensions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E3BC9B66297ABE6D0055D24D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E3BC9B70297AC7490055D24D /* View+ */,
+				E3BC9B67297ABE890055D24D /* KMM+Modules.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E3BC9B69297AC6210055D24D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				E3BC9B6A297AC62B0055D24D /* subView */,
+				E3D7456C297AD25B00BDC242 /* Screens */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		E3BC9B6A297AC62B0055D24D /* subView */ = {
+			isa = PBXGroup;
+			children = (
+				E3BC9B6B297AC6330055D24D /* ToastView.swift */,
+			);
+			path = subView;
+			sourceTree = "<group>";
+		};
+		E3BC9B6D297AC6660055D24D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E3BC9B6E297AC6700055D24D /* Toast.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E3BC9B70297AC7490055D24D /* View+ */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View+";
+			sourceTree = "<group>";
+		};
+		E3D7456C297AD25B00BDC242 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E3D7456E297AD27A00BDC242 /* Profile */,
+				E3D7456D297AD27500BDC242 /* Favorites */,
+				E3BC9B5E297ABE2C0055D24D /* Launches */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		E3D7456D297AD27500BDC242 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				E3D74571297AD29100BDC242 /* FavoritesView.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		E3D7456E297AD27A00BDC242 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E3D7456F297AD28B00BDC242 /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,9 +302,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3D74572297AD29100BDC242 /* FavoritesView.swift in Sources */,
 				1A0A3B7E297025F00051AE97 /* RocketLaunchRow.swift in Sources */,
+				E3D74570297AD28B00BDC242 /* ProfileView.swift in Sources */,
+				E3BC9B6F297AC6700055D24D /* Toast.swift in Sources */,
+				E3BC9B6C297AC6330055D24D /* ToastView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				E3BC9B64297ABE500055D24D /* LaunchesViewModel.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				E3BC9B62297ABE470055D24D /* LaunchesView.swift in Sources */,
+				E3BC9B68297ABE890055D24D /* KMM+Modules.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +443,7 @@
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,6 +469,7 @@
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
