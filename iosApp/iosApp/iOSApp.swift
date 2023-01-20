@@ -25,5 +25,5 @@ final class DIManager {
   init() {
   }
 
-  let spaceXSDK = SpaceXSDK()
+  let launcesInteractor = LaunchesInteractor()
 }

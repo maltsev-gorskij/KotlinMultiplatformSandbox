@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LaunchesView: View {
-  @StateObject private var viewModel: LaunchesViewModel = LaunchesViewModel(sdk: DIManager.shared.spaceXSDK)
+  @StateObject private var viewModel: LaunchesViewModel = LaunchesViewModel(interactor: DIManager.shared.launcesInteractor)
   var body: some View {
     NavigationView {
       ZStack(alignment: .bottom) {
