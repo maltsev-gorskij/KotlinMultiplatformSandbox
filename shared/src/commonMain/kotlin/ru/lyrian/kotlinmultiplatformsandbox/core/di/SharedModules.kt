@@ -6,7 +6,7 @@ import ru.lyrian.kotlinmultiplatformsandbox.data.dataSource.di.dataSourceModule
 import ru.lyrian.kotlinmultiplatformsandbox.data.repository.di.repositoryModule
 import ru.lyrian.kotlinmultiplatformsandbox.domain.di.interactorModule
 
-fun sharedModules() = listOf(
+internal fun sharedModules() = listOf(
     DatabaseDriverModule().create(),
     apiClientModule,
     dataSourceModule,

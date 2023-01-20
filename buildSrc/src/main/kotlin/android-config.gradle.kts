@@ -4,11 +4,11 @@ plugins {
 
 android {
     namespace = "ru.lyrian.kotlinmultiplatformsandbox"
-    compileSdk = AppConstants.compileSdk
+    compileSdk = AppConfig.compileSdk
 
     defaultConfig {
-        minSdk = AppConstants.minSdk
-        targetSdk = AppConstants.targetSdk
+        minSdk = AppConfig.minSdk
+        targetSdk = AppConfig.targetSdk
     }
 
     java {

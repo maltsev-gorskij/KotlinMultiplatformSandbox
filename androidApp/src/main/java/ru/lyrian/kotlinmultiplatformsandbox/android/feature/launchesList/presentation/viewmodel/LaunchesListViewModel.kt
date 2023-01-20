@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.model.LaunchesListState
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.ui.LaunchesListEvent
-import ru.lyrian.kotlinmultiplatformsandbox.core.constants.AppConstants.APP_LOG_TAG
-import ru.lyrian.kotlinmultiplatformsandbox.core.constants.AppConstants.EXCEPTION_PREFIX
+import ru.lyrian.kotlinmultiplatformsandbox.core.constants.LoggingConstants.APP_LOG_TAG
+import ru.lyrian.kotlinmultiplatformsandbox.core.constants.LoggingConstants.EXCEPTION_PREFIX
 import ru.lyrian.kotlinmultiplatformsandbox.domain.launches.LaunchesInteractor
 
 class LaunchesListViewModel constructor(
