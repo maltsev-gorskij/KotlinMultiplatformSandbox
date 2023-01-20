@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.ui
+package ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.ui
 
 import android.widget.Toast
 import androidx.compose.foundation.clickable
@@ -31,20 +31,20 @@ import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import org.koin.androidx.compose.getViewModel
 import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.NavigationDestinations
-import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.model.SpaceXLaunchesState
-import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.viewmodel.SpaceXLaunchesViewModel
+import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.model.LaunchesListState
+import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.viewmodel.LaunchesListViewModel
 import ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.cache.RocketLaunch
 
 @Composable
-fun SpaceXLaunchesScreen(navController: NavHostController) {
-    val viewModel = getViewModel<SpaceXLaunchesViewModel>()
+fun LaunchesListScreen(navController: NavHostController) {
+    val viewModel = getViewModel<LaunchesListViewModel>()
     val currentViewState by viewModel.viewState.collectAsState()
     val context = LocalContext.current
 
     LaunchedEffect(true) {
         viewModel.event.collect {
             when (it) {
-                is SpaceXLaunchesEvent.ShowToast -> {
+                is LaunchesListEvent.ShowToast -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -93,7 +93,7 @@ private fun LaunchesHeader() {
 @Suppress("DEPRECATION")
 @Composable
 private fun LaunchesList(
-    viewState: SpaceXLaunchesState,
+    viewState: LaunchesListState,
     onRefresh: () -> Unit,
     onLaunchClicked: () -> Unit
 ) {
@@ -119,7 +119,7 @@ private fun LaunchesList(
 
 @Composable
 private fun LaunchesListContent(
-    viewState: SpaceXLaunchesState,
+    viewState: LaunchesListState,
     onLaunchClicked: () -> Unit
 ) {
     LazyColumn(

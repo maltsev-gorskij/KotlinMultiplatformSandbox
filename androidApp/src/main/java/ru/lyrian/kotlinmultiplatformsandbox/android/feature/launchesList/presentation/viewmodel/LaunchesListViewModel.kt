@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.viewmodel
+package ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -10,25 +10,25 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.model.SpaceXLaunchesState
-import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.ui.SpaceXLaunchesEvent
+import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.model.LaunchesListState
+import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.ui.LaunchesListEvent
 import ru.lyrian.kotlinmultiplatformsandbox.core.constants.AppConstants.APP_LOG_TAG
 import ru.lyrian.kotlinmultiplatformsandbox.core.constants.AppConstants.EXCEPTION_PREFIX
 import ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.domain.GetLaunchesListUseCase
 
-class SpaceXLaunchesViewModel constructor(
+class LaunchesListViewModel constructor(
     private val getLaunchesListUseCase: GetLaunchesListUseCase
 ) : ViewModel() {
-    private val _viewState = MutableStateFlow(SpaceXLaunchesState())
+    private val _viewState = MutableStateFlow(LaunchesListState())
     val viewState = _viewState.asStateFlow()
 
-    private val _event = MutableSharedFlow<SpaceXLaunchesEvent>()
+    private val _event = MutableSharedFlow<LaunchesListEvent>()
     val event = _event.asSharedFlow()
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         viewModelScope.launch {
             Log.e(APP_LOG_TAG, EXCEPTION_PREFIX, throwable)
-            _event.emit(SpaceXLaunchesEvent.ShowToast("Update failed" + throwable.localizedMessage?.let { ": $it" }))
+            _event.emit(LaunchesListEvent.ShowToast("Update failed" + throwable.localizedMessage?.let { ": $it" }))
 
             _viewState.update {
                 it.copy(
@@ -60,7 +60,7 @@ class SpaceXLaunchesViewModel constructor(
                 )
             }
 
-            if (forceReload) _event.emit(SpaceXLaunchesEvent.ShowToast("Reload completed"))
+            if (forceReload) _event.emit(LaunchesListEvent.ShowToast("Reload completed"))
         }
     }
 }

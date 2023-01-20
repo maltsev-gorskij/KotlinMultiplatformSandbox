@@ -1,7 +1,7 @@
 package ru.lyrian.kotlinmultiplatformsandbox.android.di
 
-import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.di.spaceXLaunchesModule
+import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.di.launchesListModule
 
 fun androidModules() = listOf(
-    spaceXLaunchesModule
+    launchesListModule
 )
