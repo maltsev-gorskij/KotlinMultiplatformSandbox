@@ -33,7 +33,7 @@ import org.koin.androidx.compose.getViewModel
 import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.NavigationDestinations
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.model.SpaceXLaunchesState
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.viewmodel.SpaceXLaunchesViewModel
-import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.cache.RocketLaunch
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.cache.RocketLaunch
 
 @Composable
 fun SpaceXLaunchesScreen(navController: NavHostController) {

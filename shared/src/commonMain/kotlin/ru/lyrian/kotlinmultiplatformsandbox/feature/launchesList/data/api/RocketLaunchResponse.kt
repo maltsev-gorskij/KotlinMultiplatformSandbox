@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.api
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.api
 
 
 import kotlinx.serialization.SerialName

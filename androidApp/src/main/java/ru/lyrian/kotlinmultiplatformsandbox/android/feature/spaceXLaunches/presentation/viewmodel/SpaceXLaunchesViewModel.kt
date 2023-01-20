@@ -14,9 +14,11 @@ import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.prese
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.ui.SpaceXLaunchesEvent
 import ru.lyrian.kotlinmultiplatformsandbox.core.constants.AppConstants.APP_LOG_TAG
 import ru.lyrian.kotlinmultiplatformsandbox.core.constants.AppConstants.EXCEPTION_PREFIX
-import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.domain.SpaceXSDK
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.domain.GetLaunchesListUseCase
 
-class SpaceXLaunchesViewModel constructor(private val spaceXSdk: SpaceXSDK): ViewModel() {
+class SpaceXLaunchesViewModel constructor(
+    private val getLaunchesListUseCase: GetLaunchesListUseCase
+) : ViewModel() {
     private val _viewState = MutableStateFlow(SpaceXLaunchesState())
     val viewState = _viewState.asStateFlow()
 
@@ -25,7 +27,7 @@ class SpaceXLaunchesViewModel constructor(private val spaceXSdk: SpaceXSDK): Vie
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         viewModelScope.launch {
-            Log.e(APP_LOG_TAG, EXCEPTION_PREFIX ,throwable)
+            Log.e(APP_LOG_TAG, EXCEPTION_PREFIX, throwable)
             _event.emit(SpaceXLaunchesEvent.ShowToast("Update failed" + throwable.localizedMessage?.let { ": $it" }))
 
             _viewState.update {
@@ -48,7 +50,7 @@ class SpaceXLaunchesViewModel constructor(private val spaceXSdk: SpaceXSDK): Vie
                 )
             }
 
-            val launches = spaceXSdk.getLaunches(forceReload)
+            val launches = getLaunchesListUseCase(forceReload)
 
             _viewState.update {
                 it.copy(
@@ -58,7 +60,7 @@ class SpaceXLaunchesViewModel constructor(private val spaceXSdk: SpaceXSDK): Vie
                 )
             }
 
-            if(forceReload) _event.emit(SpaceXLaunchesEvent.ShowToast("Reload completed"))
+            if (forceReload) _event.emit(SpaceXLaunchesEvent.ShowToast("Reload completed"))
         }
     }
 }
