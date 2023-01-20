@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.common.data.cache
+package ru.lyrian.kotlinmultiplatformsandbox.feature.common.data.cache.di
 
 import android.content.Context
 import com.squareup.sqldelight.android.AndroidSqliteDriver
