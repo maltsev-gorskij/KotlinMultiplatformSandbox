@@ -25,18 +25,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import org.koin.androidx.compose.getViewModel
-import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.NavigationDestinations
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.model.LaunchesListState
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.viewmodel.LaunchesListViewModel
 import ru.lyrian.kotlinmultiplatformsandbox.domain.launches.RocketLaunch
 
 @Composable
-fun LaunchesListScreen(navController: NavHostController) {
+fun LaunchesListScreen(onLaunchClicked: () -> Unit) {
     val viewModel = getViewModel<LaunchesListViewModel>()
     val currentViewState by viewModel.viewState.collectAsState()
     val context = LocalContext.current
@@ -62,9 +60,7 @@ fun LaunchesListScreen(navController: NavHostController) {
             LaunchesList(
                 viewState = currentViewState,
                 onRefresh = { viewModel.refresh(true) },
-                onLaunchClicked = {
-                    navController.navigate(NavigationDestinations.LAUNCHES_DETAILS)
-                }
+                onLaunchClicked = onLaunchClicked
             )
         }
     }
