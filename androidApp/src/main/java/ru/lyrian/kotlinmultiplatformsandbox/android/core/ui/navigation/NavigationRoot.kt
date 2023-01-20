@@ -16,19 +16,9 @@ import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.present
 fun NavigationRoot() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = NavigationDestinations.LAUNCHES_LIST.route) {
-        composable(NavigationDestinations.LAUNCHES_LIST.route) { LaunchesListScreen(navController) }
-        composable(NavigationDestinations.LAUNCHES_DETAILS.route) {
-            Surface(modifier = Modifier.fillMaxSize()) {
-                Box {
-                    Text(
-                        modifier = Modifier.align(Alignment.Center),
-                        text = "Details placeholder"
-                    )
-                }
-            }
-        }
-        composable(NavigationDestinations.LAUNCHES_FAVORITES.route) {
+    NavHost(navController = navController, startDestination = NavigationDestinations.LAUNCHES_LIST) {
+        composable(NavigationDestinations.LAUNCHES_LIST) { LaunchesListScreen(navController) }
+        composable(NavigationDestinations.LAUNCHES_FAVORITES) {
             Surface(modifier = Modifier.fillMaxSize()) {
                 Box {
                     Text(
@@ -38,12 +28,22 @@ fun NavigationRoot() {
                 }
             }
         }
-        composable(NavigationDestinations.PROFILE.route) {
+        composable(NavigationDestinations.PROFILE) {
             Surface(modifier = Modifier.fillMaxSize()) {
                 Box {
                     Text(
                         modifier = Modifier.align(Alignment.Center),
                         text = "Profile placeholder"
+                    )
+                }
+            }
+        }
+        composable(NavigationDestinations.LAUNCHES_DETAILS) {
+            Surface(modifier = Modifier.fillMaxSize()) {
+                Box {
+                    Text(
+                        modifier = Modifier.align(Alignment.Center),
+                        text = "Details placeholder"
                     )
                 }
             }

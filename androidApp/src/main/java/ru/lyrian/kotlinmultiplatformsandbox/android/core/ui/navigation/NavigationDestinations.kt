@@ -1,8 +1,8 @@
 package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation
 
-enum class NavigationDestinations(val route: String) {
-   LAUNCHES_LIST(route = "launchesList"),
-   LAUNCHES_FAVORITES(route = "launchesFavorites"),
-   LAUNCHES_DETAILS(route = "launchDetails"),
-   PROFILE(route = "profile")
+object NavigationDestinations {
+   const val LAUNCHES_LIST = "launchesList"
+   const val LAUNCHES_FAVORITES = "launchesFavorites"
+   const val LAUNCHES_DETAILS = "launchDetails"
+   const val PROFILE = "profile"
 }
