@@ -10,7 +10,7 @@ import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
 internal val apiClientModule = module {
-    single<HttpClient> {
+    single {
         HttpClient {
             install(ContentNegotiation) {
                 json(

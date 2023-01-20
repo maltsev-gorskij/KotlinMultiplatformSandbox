@@ -14,10 +14,10 @@ import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.present
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.ui.LaunchesListEvent
 import ru.lyrian.kotlinmultiplatformsandbox.core.constants.AppConstants.APP_LOG_TAG
 import ru.lyrian.kotlinmultiplatformsandbox.core.constants.AppConstants.EXCEPTION_PREFIX
-import ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.domain.GetLaunchesListUseCase
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain.LaunchesInteractor
 
 class LaunchesListViewModel constructor(
-    private val getLaunchesListUseCase: GetLaunchesListUseCase
+    private val launchesInteractor: LaunchesInteractor
 ) : ViewModel() {
     private val _viewState = MutableStateFlow(LaunchesListState())
     val viewState = _viewState.asStateFlow()
@@ -50,7 +50,7 @@ class LaunchesListViewModel constructor(
                 )
             }
 
-            val launches = getLaunchesListUseCase(forceReload)
+            val launches = launchesInteractor.getAllLaunches(forceReload)
 
             _viewState.update {
                 it.copy(

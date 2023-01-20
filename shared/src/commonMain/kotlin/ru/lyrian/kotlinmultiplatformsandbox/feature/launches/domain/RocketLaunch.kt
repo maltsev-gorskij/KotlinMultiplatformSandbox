@@ -1,7 +1,7 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.launchesList.data.cache
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain
 
 data class RocketLaunch(
-    val flightNumber: Int,
+    val flightNumber: Long,
     val missionName: String,
     val launchYear: Int,
     val launchDateUTC: String,
