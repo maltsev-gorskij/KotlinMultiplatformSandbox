@@ -32,8 +32,10 @@ final class LaunchesViewModel: ObservableObject {
       }
       if let launches = launches {
         DispatchQueue.main.async {
+          if !self.launches.isEmpty {
+            self.shownToast(toast: .success)
+          }
           self.launches = launches
-          self.shownToast(toast: .success)
         }
       } else {
         self.shownToast(toast: .failed)
