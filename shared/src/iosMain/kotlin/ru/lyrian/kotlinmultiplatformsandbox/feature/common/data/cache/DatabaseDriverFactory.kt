@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.data.cache
+package ru.lyrian.kotlinmultiplatformsandbox.feature.common.data.cache
 
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver

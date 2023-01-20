@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.model.SpaceXLaunchesState
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.spaceXLaunches.presentation.ui.SpaceXLaunchesEvent
-import ru.lyrian.kotlinmultiplatformsandbox.core.AppConstants.APP_LOG_TAG
-import ru.lyrian.kotlinmultiplatformsandbox.core.AppConstants.EXCEPTION_PREFIX
+import ru.lyrian.kotlinmultiplatformsandbox.core.constants.AppConstants.APP_LOG_TAG
+import ru.lyrian.kotlinmultiplatformsandbox.core.constants.AppConstants.EXCEPTION_PREFIX
 import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.domain.SpaceXSDK
 
 class SpaceXLaunchesViewModel constructor(private val spaceXSdk: SpaceXSDK): ViewModel() {

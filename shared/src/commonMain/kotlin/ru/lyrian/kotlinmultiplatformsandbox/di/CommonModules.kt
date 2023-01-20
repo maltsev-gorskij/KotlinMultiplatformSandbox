@@ -1,9 +1,7 @@
 package ru.lyrian.kotlinmultiplatformsandbox.di
 
-import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.di.DatabaseDriverModule
-import ru.lyrian.kotlinmultiplatformsandbox.feature.spaceXLaunches.di.spaceXSdkModule
+import ru.lyrian.kotlinmultiplatformsandbox.feature.common.di.DatabaseDriverModule
 
 fun commonModules() = listOf(
     DatabaseDriverModule().create(),
-    spaceXSdkModule
 )
