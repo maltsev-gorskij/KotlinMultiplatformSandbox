@@ -4,7 +4,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.lyrian.kotlinmultiplatformsandbox.AppDatabaseQueries
 import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.dataSource.LaunchesListApi
-import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.dataSource.RocketLaunchResponse
 import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain.RocketLaunch
 
 internal class LaunchesRepository(
@@ -12,25 +11,25 @@ internal class LaunchesRepository(
     private val appDatabaseQueries: AppDatabaseQueries,
     private val rocketLaunchMapper: RocketLaunchMapper
 ) {
-    internal suspend fun getUpToDateLaunches(): List<RocketLaunch> {
-        val launches: List<RocketLaunchResponse> = launchesListApi.getAllLaunches()
-
-        return launches
+    internal suspend fun getUpToDateLaunches(): List<RocketLaunch> =
+        launchesListApi
+            .getAllLaunches()
             .filter { it.staticFireDateUtc != null }
             .map { rocketLaunchMapper(it) }
-    }
+
 
     internal suspend fun clearDatabase() {
         withContext(Dispatchers.Default) {
             appDatabaseQueries.transaction {
                 appDatabaseQueries.removeAllLaunches()
                 appDatabaseQueries.removeAllFlickImages()
+                appDatabaseQueries.removeAllFailureReasons()
             }
         }
     }
 
-    internal suspend fun getAllCachedLaunches(): List<RocketLaunch> {
-        return withContext(Dispatchers.Default) {
+    internal suspend fun getAllCachedLaunches(): List<RocketLaunch> =
+        withContext(Dispatchers.Default) {
             appDatabaseQueries.transactionWithResult {
                 appDatabaseQueries
                     .getAllLaunches()
@@ -38,12 +37,13 @@ internal class LaunchesRepository(
                     .map {
                         rocketLaunchMapper(
                             launchEntity = it,
-                            flickrImagesUrls = appDatabaseQueries.getAllFlickrImagesByLaunchId(it.id).executeAsList()
+                            flickrImagesUrls = appDatabaseQueries.getAllFlickrImagesByLaunchId(it.id).executeAsList(),
+                            failureReasons = appDatabaseQueries.getAllFailureReasonsById(it.id).executeAsList()
                         )
                     }
             }
         }
-    }
+
 
     internal suspend fun createLaunches(launches: List<RocketLaunch>) =
         withContext(Dispatchers.Default) {
@@ -54,6 +54,15 @@ internal class LaunchesRepository(
                             appDatabaseQueries.insertFlickrImage(
                                 launchId = launch.id,
                                 imageUrl = imageUrl
+                            )
+                        }
+                    }
+
+                    if (launch.failureReasons.isNotEmpty()) {
+                        launch.failureReasons.forEach { reason: String ->
+                            appDatabaseQueries.insertFailureReason(
+                                launchId = launch.id,
+                                reason = reason
                             )
                         }
                     }
@@ -83,6 +92,9 @@ internal class LaunchesRepository(
                         .executeAsOne(),
                     flickrImagesUrls = appDatabaseQueries
                         .getAllFlickrImagesByLaunchId(launchId)
+                        .executeAsList(),
+                    failureReasons = appDatabaseQueries
+                        .getAllFailureReasonsById(launchId)
                         .executeAsList()
                 )
             }

@@ -57,6 +57,22 @@ WHERE FlickrImageEntity.launchId == :launchId;
 removeAllFlickImages:
 DELETE FROM FlickrImageEntity;
 
+CREATE TABLE IF NOT EXISTS FailureReasonEntity (
+    launchId      TEXT NOT NULL,
+    reason      TEXT NOT NULL
+);
 
+insertFailureReason:
+INSERT INTO FailureReasonEntity(
+    launchId,
+    reason
+)
+VALUES(?, ?);
 
+getAllFailureReasonsById:
+SELECT reason
+FROM FailureReasonEntity
+WHERE FailureReasonEntity.launchId == :launchId;
 
+removeAllFailureReasons:
+DELETE FROM FailureReasonEntity;

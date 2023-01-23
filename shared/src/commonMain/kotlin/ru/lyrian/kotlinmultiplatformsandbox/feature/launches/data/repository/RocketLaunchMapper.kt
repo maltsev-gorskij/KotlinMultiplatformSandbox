@@ -17,10 +17,15 @@ internal class RocketLaunchMapper {
             articleUrl = rocketLaunchResponse.links.article ?: "",
             id = rocketLaunchResponse.id,
             patchImageUrl = rocketLaunchResponse.links.patch.large,
-            flickrImagesUrls = rocketLaunchResponse.links.flickr.original
+            flickrImagesUrls = rocketLaunchResponse.links.flickr.original,
+            failureReasons = rocketLaunchResponse.failures.map { it.reason }
         )
 
-    internal operator fun invoke(launchEntity: LaunchEntity, flickrImagesUrls: List<String>): RocketLaunch =
+    internal operator fun invoke(
+        launchEntity: LaunchEntity,
+        flickrImagesUrls: List<String>,
+        failureReasons: List<String>
+    ): RocketLaunch =
         RocketLaunch(
             flightNumber = launchEntity.flightNumber,
             missionName = launchEntity.missionName,
@@ -31,6 +36,7 @@ internal class RocketLaunchMapper {
             articleUrl = launchEntity.articleUrl,
             id = launchEntity.id,
             patchImageUrl = launchEntity.patchImageUrl,
-            flickrImagesUrls = flickrImagesUrls
+            flickrImagesUrls = flickrImagesUrls,
+            failureReasons = failureReasons
         )
 }
