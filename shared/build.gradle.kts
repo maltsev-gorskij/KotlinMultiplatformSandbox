@@ -15,6 +15,7 @@ kotlin {
                 implementation(libs.coroutines.core)
                 implementation(libs.bundles.ktor.common)
                 implementation(libs.sqldelight.common)
+                implementation(libs.sqldelight.coroutines)
                 api(libs.koin.core)
             }
         }
