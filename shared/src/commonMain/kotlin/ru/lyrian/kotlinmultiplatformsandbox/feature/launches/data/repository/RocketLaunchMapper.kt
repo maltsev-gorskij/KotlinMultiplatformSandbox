@@ -14,10 +14,13 @@ internal class RocketLaunchMapper {
             launchDateUTC = rocketLaunchResponse.staticFireDateUtc,
             details = rocketLaunchResponse.details ?: "",
             launchSuccess = rocketLaunchResponse.success ?: false,
-            articleUrl = rocketLaunchResponse.links.article ?: ""
+            articleUrl = rocketLaunchResponse.links.article ?: "",
+            id = rocketLaunchResponse.id,
+            patchImageUrl = rocketLaunchResponse.links.patch.large,
+            flickrImagesUrls = rocketLaunchResponse.links.flickr.original
         )
 
-    internal operator fun invoke(launchEntity: LaunchEntity): RocketLaunch =
+    internal operator fun invoke(launchEntity: LaunchEntity, flickrImagesUrls: List<String>): RocketLaunch =
         RocketLaunch(
             flightNumber = launchEntity.flightNumber,
             missionName = launchEntity.missionName,
@@ -25,6 +28,9 @@ internal class RocketLaunchMapper {
             launchDateUTC = launchEntity.launchDateUTC,
             details = launchEntity.details,
             launchSuccess = launchEntity.launchSuccess,
-            articleUrl = launchEntity.articleUrl
+            articleUrl = launchEntity.articleUrl,
+            id = launchEntity.id,
+            patchImageUrl = launchEntity.patchImageUrl,
+            flickrImagesUrls = flickrImagesUrls
         )
 }

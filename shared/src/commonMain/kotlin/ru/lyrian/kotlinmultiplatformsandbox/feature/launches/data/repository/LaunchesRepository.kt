@@ -22,40 +22,69 @@ internal class LaunchesRepository(
 
     internal suspend fun clearDatabase() {
         withContext(Dispatchers.Default) {
-            appDatabaseQueries.removeAllLaunches()
+            appDatabaseQueries.transaction {
+                appDatabaseQueries.removeAllLaunches()
+                appDatabaseQueries.removeAllFlickImages()
+            }
         }
     }
 
     internal suspend fun getAllCachedLaunches(): List<RocketLaunch> {
         return withContext(Dispatchers.Default) {
-            appDatabaseQueries
-                .selectAllLaunchesInfo()
-                .executeAsList()
-                .map {
-                    rocketLaunchMapper(it)
-                }
-        }
-    }
-
-    internal suspend fun createLaunches(launches: List<RocketLaunch>) {
-        withContext(Dispatchers.Default) {
-            appDatabaseQueries.transaction {
-                launches.forEach { launch ->
-                    insertLaunch(launch)
-                }
+            appDatabaseQueries.transactionWithResult {
+                appDatabaseQueries
+                    .getAllLaunches()
+                    .executeAsList()
+                    .map {
+                        rocketLaunchMapper(
+                            launchEntity = it,
+                            flickrImagesUrls = appDatabaseQueries.getAllFlickrImagesByLaunchId(it.id).executeAsList()
+                        )
+                    }
             }
         }
     }
 
-    private fun insertLaunch(launch: RocketLaunch) {
-        appDatabaseQueries.insertLaunch(
-            flightNumber = launch.flightNumber,
-            missionName = launch.missionName,
-            launchYear = launch.launchYear,
-            details = launch.details,
-            launchSuccess = launch.launchSuccess ?: false,
-            launchDateUTC = launch.launchDateUTC,
-            articleUrl = launch.articleUrl
-        )
-    }
+    internal suspend fun createLaunches(launches: List<RocketLaunch>) =
+        withContext(Dispatchers.Default) {
+            appDatabaseQueries.transaction {
+                launches.forEach { launch ->
+                    if (launch.flickrImagesUrls.isNotEmpty()) {
+                        launch.flickrImagesUrls.forEach { imageUrl: String ->
+                            appDatabaseQueries.insertFlickrImage(
+                                launchId = launch.id,
+                                imageUrl = imageUrl
+                            )
+                        }
+                    }
+
+                    appDatabaseQueries.insertLaunch(
+                        flightNumber = launch.flightNumber,
+                        missionName = launch.missionName,
+                        launchYear = launch.launchYear,
+                        details = launch.details,
+                        launchSuccess = launch.launchSuccess ?: false,
+                        launchDateUTC = launch.launchDateUTC,
+                        articleUrl = launch.articleUrl,
+                        id = launch.id,
+                        patchImageUrl = launch.patchImageUrl
+                    )
+                }
+            }
+        }
+
+
+    internal suspend fun getLaunchById(launchId: String): RocketLaunch =
+        withContext(Dispatchers.Default) {
+            appDatabaseQueries.transactionWithResult {
+                rocketLaunchMapper(
+                    launchEntity = appDatabaseQueries
+                        .getLaunchById(launchId)
+                        .executeAsOne(),
+                    flickrImagesUrls = appDatabaseQueries
+                        .getAllFlickrImagesByLaunchId(launchId)
+                        .executeAsList()
+                )
+            }
+        }
 }

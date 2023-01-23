@@ -7,5 +7,8 @@ data class RocketLaunch(
     val launchDateUTC: String,
     val details: String?,
     val launchSuccess: Boolean?,
-    val articleUrl: String?
+    val articleUrl: String?,
+    val id: String,
+    val patchImageUrl: String?,
+    val flickrImagesUrls: List<String>
 )

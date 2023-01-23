@@ -20,4 +20,7 @@ class LaunchesInteractor: KoinComponent {
             }
         }
     }
+
+    @Throws(Exception::class)
+    suspend fun getLaunchById(launchId: String): RocketLaunch = launchesRepository.getLaunchById(launchId)
 }
