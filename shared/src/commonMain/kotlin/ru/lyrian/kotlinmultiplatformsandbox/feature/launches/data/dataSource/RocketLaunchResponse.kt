@@ -17,7 +17,8 @@ internal data class RocketLaunchResponse(
     @SerialName("static_fire_date_utc")
     val staticFireDateUtc: String?,
     val success: Boolean?,
-    val id: String
+    val id: String,
+    val failures: List<RocketLaunchResponseFailure>,
 ) {
     @Serializable
     internal data class RocketLaunchResponseLinks(
@@ -35,4 +36,9 @@ internal data class RocketLaunchResponse(
             val original: List<String>
         )
     }
+
+    @Serializable
+    data class RocketLaunchResponseFailure(
+        val reason: String
+    )
 }
