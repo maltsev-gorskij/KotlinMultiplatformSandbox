@@ -12,7 +12,6 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.datetime)
-                implementation(libs.coroutines.core)
                 implementation(libs.bundles.ktor.common)
                 implementation(libs.sqldelight.common)
                 implementation(libs.sqldelight.coroutines)

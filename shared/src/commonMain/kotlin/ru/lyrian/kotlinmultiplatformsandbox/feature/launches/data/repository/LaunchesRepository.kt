@@ -1,5 +1,7 @@
 package ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.repository
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import ru.lyrian.kotlinmultiplatformsandbox.AppDatabaseQueries
 import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.dataSource.LaunchesListApi
 import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.dataSource.RocketLaunchResponse
@@ -18,23 +20,29 @@ internal class LaunchesRepository(
             .map { rocketLaunchMapper(it) }
     }
 
-    internal fun clearDatabase() {
-        appDatabaseQueries.removeAllLaunches()
+    internal suspend fun clearDatabase() {
+        withContext(Dispatchers.Default) {
+            appDatabaseQueries.removeAllLaunches()
+        }
     }
 
-    internal fun getAllCachedLaunches(): List<RocketLaunch> {
-        return appDatabaseQueries
-            .selectAllLaunchesInfo()
-            .executeAsList()
-            .map {
-                rocketLaunchMapper(it)
-            }
+    internal suspend fun getAllCachedLaunches(): List<RocketLaunch> {
+        return withContext(Dispatchers.Default) {
+            appDatabaseQueries
+                .selectAllLaunchesInfo()
+                .executeAsList()
+                .map {
+                    rocketLaunchMapper(it)
+                }
+        }
     }
 
-    internal fun createLaunches(launches: List<RocketLaunch>) {
-        appDatabaseQueries.transaction {
-            launches.forEach { launch ->
-                insertLaunch(launch)
+    internal suspend fun createLaunches(launches: List<RocketLaunch>) {
+        withContext(Dispatchers.Default) {
+            appDatabaseQueries.transaction {
+                launches.forEach { launch ->
+                    insertLaunch(launch)
+                }
             }
         }
     }
