@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.core.di.httpClient
+package ru.lyrian.kotlinmultiplatformsandbox.core.data.dataSource.api.di
 
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

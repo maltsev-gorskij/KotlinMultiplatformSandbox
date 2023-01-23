@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.core.di.databaseDriver
+package ru.lyrian.kotlinmultiplatformsandbox.core.data.dataSource.database
 
 import android.content.Context
 import com.squareup.sqldelight.android.AndroidSqliteDriver
