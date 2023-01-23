@@ -1,8 +1,8 @@
-package ru.lyrian.kotlinmultiplatformsandbox.domain.launches
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain
 
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import ru.lyrian.kotlinmultiplatformsandbox.data.repository.launches.LaunchesRepository
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.repository.LaunchesRepository
 
 class LaunchesInteractor: KoinComponent {
     private val launchesRepository: LaunchesRepository by inject()

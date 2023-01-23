@@ -14,7 +14,7 @@ import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.present
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.ui.LaunchesListEvent
 import ru.lyrian.kotlinmultiplatformsandbox.core.constants.LoggingConstants.APP_LOG_TAG
 import ru.lyrian.kotlinmultiplatformsandbox.core.constants.LoggingConstants.EXCEPTION_PREFIX
-import ru.lyrian.kotlinmultiplatformsandbox.domain.launches.LaunchesInteractor
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain.LaunchesInteractor
 
 class LaunchesListViewModel constructor(
     private val launchesInteractor: LaunchesInteractor

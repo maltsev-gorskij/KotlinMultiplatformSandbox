@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.data.dataSource.launchesApi
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.dataSource
 
 
 import kotlinx.serialization.SerialName

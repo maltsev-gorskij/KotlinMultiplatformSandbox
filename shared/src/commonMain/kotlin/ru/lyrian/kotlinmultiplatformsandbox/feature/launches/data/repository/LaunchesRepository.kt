@@ -1,9 +1,9 @@
-package ru.lyrian.kotlinmultiplatformsandbox.data.repository.launches
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.repository
 
 import ru.lyrian.kotlinmultiplatformsandbox.AppDatabaseQueries
-import ru.lyrian.kotlinmultiplatformsandbox.data.dataSource.launchesApi.LaunchesListApi
-import ru.lyrian.kotlinmultiplatformsandbox.data.dataSource.launchesApi.RocketLaunchResponse
-import ru.lyrian.kotlinmultiplatformsandbox.domain.launches.RocketLaunch
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.dataSource.LaunchesListApi
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.dataSource.RocketLaunchResponse
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain.RocketLaunch
 
 internal class LaunchesRepository(
     private val launchesListApi: LaunchesListApi,

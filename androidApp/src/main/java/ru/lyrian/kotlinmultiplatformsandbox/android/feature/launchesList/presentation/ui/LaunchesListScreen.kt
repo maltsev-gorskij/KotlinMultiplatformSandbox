@@ -31,7 +31,7 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import org.koin.androidx.compose.getViewModel
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.model.LaunchesListState
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.viewmodel.LaunchesListViewModel
-import ru.lyrian.kotlinmultiplatformsandbox.domain.launches.RocketLaunch
+import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain.RocketLaunch
 
 @Composable
 fun LaunchesListScreen(onLaunchClicked: () -> Unit) {
