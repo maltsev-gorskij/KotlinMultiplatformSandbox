@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.data.dataSource.launchesApi
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.dataSource
 
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest

@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.data.dataSource.launchesApi
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launches.data.dataSource
 
 import io.ktor.client.call.body
 import io.ktor.client.request.get

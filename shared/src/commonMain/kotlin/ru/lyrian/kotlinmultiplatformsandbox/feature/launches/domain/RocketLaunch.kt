@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.domain.launches
+package ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain
 
 data class RocketLaunch(
     val flightNumber: Long,
