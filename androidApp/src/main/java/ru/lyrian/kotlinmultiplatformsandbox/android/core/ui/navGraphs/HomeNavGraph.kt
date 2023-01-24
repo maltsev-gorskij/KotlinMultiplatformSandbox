@@ -24,8 +24,8 @@ fun HomeNavGraph(navController: NavHostController) {
     ) {
         composable(NavigationDestinations.HomeNavGraph.LAUNCHES) {
             LaunchesListScreen(
-                onLaunchClicked = {
-                    navController.navigate(NavigationDestinations.DetailsNavGraph.DETAILS)
+                onLaunchClicked = { id, title ->
+                    navController.navigateToLaunchDetails(id, title)
                 }
             )
         }
@@ -49,6 +49,8 @@ fun HomeNavGraph(navController: NavHostController) {
                 }
             }
         }
-        detailsNavGraph()
+        detailsNavGraph(
+            onNavigateBack = { navController.popBackStack() }
+        )
     }
 }

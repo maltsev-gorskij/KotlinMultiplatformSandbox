@@ -9,5 +9,8 @@ object NavigationDestinations {
 
    object DetailsNavGraph {
       const val DETAILS = "launchDetails"
+
+      const val LAUNCH_ID_ARG = "launchId"
+      const val LAUNCH_TITLE_ARG = "launchTitle"
    }
 }
