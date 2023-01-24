@@ -19,6 +19,7 @@ koin_compose = "3.4.1"
 junit = "4.13.2"
 mockito = "4.6.0"
 android_core_testing = "2.1.0"
+coil = "2.2.2"
 
 [libraries]
 gradleplugins-android = { module = "com.android.tools.build:gradle", version.ref = "android_plugin" }
@@ -51,6 +52,9 @@ compose-material = { module = "androidx.compose.material:material", version.ref 
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose_activity" }
 compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "compose_navigation" }
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
+accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
+accompanist-pager-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
+compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
@@ -81,5 +85,8 @@ compose = [
     "compose-activity",
     "compose-navigation",
     "accompanist-swiperefresh",
+    "accompanist-pager",
+    "accompanist-pager-indicators",
+    "compose-coil",
     "lifecycle-viewmodel-compose"
 ]

@@ -34,7 +34,9 @@ import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.present
 import ru.lyrian.kotlinmultiplatformsandbox.feature.launches.domain.RocketLaunch
 
 @Composable
-fun LaunchesListScreen(onLaunchClicked: () -> Unit) {
+fun LaunchesListScreen(
+    onLaunchClicked: (String, String) -> Unit // Id, Title
+) {
     val viewModel = getViewModel<LaunchesListViewModel>()
     val currentViewState by viewModel.viewState.collectAsState()
     val context = LocalContext.current
@@ -91,7 +93,7 @@ private fun LaunchesHeader() {
 private fun LaunchesList(
     viewState: LaunchesListState,
     onRefresh: () -> Unit,
-    onLaunchClicked: () -> Unit
+    onLaunchClicked: (String, String) -> Unit // Id, Title
 ) {
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = viewState.isLoading)
 
@@ -116,7 +118,7 @@ private fun LaunchesList(
 @Composable
 private fun LaunchesListContent(
     viewState: LaunchesListState,
-    onLaunchClicked: () -> Unit
+    onLaunchClicked: (String, String) -> Unit // Id, Title
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -137,7 +139,7 @@ private fun LaunchesListContent(
             items(items = viewState.launches) {
                 LaunchesListItem(
                     rocketLaunch = it,
-                    onLaunchClicked = onLaunchClicked
+                    onLaunchClicked = { onLaunchClicked(it.id, it.missionName) }
                 )
             }
         }

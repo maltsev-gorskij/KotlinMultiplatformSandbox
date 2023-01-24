@@ -4,10 +4,10 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.model.LaunchesListState
@@ -22,13 +22,13 @@ class LaunchesListViewModel constructor(
     private val _viewState = MutableStateFlow(LaunchesListState())
     val viewState = _viewState.asStateFlow()
 
-    private val _event = MutableSharedFlow<LaunchesListEvent>()
-    val event = _event.asSharedFlow()
+    private val _event = Channel<LaunchesListEvent>()
+    val event = _event.receiveAsFlow()
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         viewModelScope.launch {
             Log.e(APP_LOG_TAG, EXCEPTION_PREFIX, throwable)
-            _event.emit(LaunchesListEvent.ShowToast("Update failed" + throwable.localizedMessage?.let { ": $it" }))
+            _event.send(LaunchesListEvent.ShowToast("Update failed" + throwable.localizedMessage?.let { ": $it" }))
 
             _viewState.update {
                 it.copy(
@@ -60,7 +60,9 @@ class LaunchesListViewModel constructor(
                 )
             }
 
-            if (forceReload) _event.emit(LaunchesListEvent.ShowToast("Reload completed"))
+            if (forceReload) {
+                _event.send(LaunchesListEvent.ShowToast("Reload completed"))
+            }
         }
     }
 }
