@@ -10,6 +10,7 @@ import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.Navigatio
 import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.NavigationDestinations.DetailsNavGraph.LAUNCH_ID_ARG
 import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.NavigationDestinations.DetailsNavGraph.LAUNCH_TITLE_ARG
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchDetails.presentation.ui.LaunchDetailsScreen
+import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchDetails.presentation.LaunchDetailsScreen
 
 fun NavGraphBuilder.detailsNavGraph(
     onNavigateBack: () -> Unit
