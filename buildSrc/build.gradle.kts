@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     `kotlin-dsl`
 }
@@ -15,4 +14,5 @@ dependencies {
     implementation(libs.gradleplugins.kotlin)
     implementation(libs.gradleplugins.sqldelight)
     implementation(libs.gradleplugins.kotlinxserialization)
+    implementation(libs.gradleplugins.versions)
 }
