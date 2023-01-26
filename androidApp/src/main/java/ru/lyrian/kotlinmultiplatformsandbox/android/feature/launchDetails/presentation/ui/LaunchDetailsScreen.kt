@@ -33,12 +33,12 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import org.koin.androidx.compose.getViewModel
+import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.composables.images.ImageFromUrl
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchDetails.presentation.model.LaunchDetailsEvent
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchDetails.presentation.model.LaunchDetailsState
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchDetails.presentation.viewmodel.LaunchDetailsViewModel
@@ -211,7 +211,7 @@ private fun LaunchImages(
                 count = flickrImagesUrls.size,
             ) {
                 ImageFromUrl(
-                    url = flickrImagesUrls[it],
+                    model = flickrImagesUrls[it],
                     contentDescription = "Flicker Image $it",
                     modifier = Modifier
                         .fillMaxWidth()
@@ -225,26 +225,13 @@ private fun LaunchImages(
         }
     } else if (!patchImageUrl.isNullOrEmpty()) {
         ImageFromUrl(
-            url = patchImageUrl,
+            model = patchImageUrl,
             contentDescription = "Patch image",
             modifier = modifier
                 .fillMaxWidth()
                 .aspectRatio(2f)
         )
     }
-}
-
-@Composable
-private fun ImageFromUrl(
-    url: String,
-    contentDescription: String,
-    modifier: Modifier = Modifier
-) {
-    AsyncImage(
-        model = url,
-        contentDescription = contentDescription,
-        modifier = modifier
-    )
 }
 
 @Composable

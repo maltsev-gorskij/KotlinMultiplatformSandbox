@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.bottomNavigation
+package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.bottomNavigation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically

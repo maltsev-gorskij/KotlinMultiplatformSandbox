@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navGraphs
+package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.navGraphs
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.bottomNavigation.BottomNavItems
-import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.NavigationDestinations
+import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.bottomNavigation.BottomNavItems
+import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.destinations.NavDestinations
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.ui.LaunchesListScreen
 
 @Composable
@@ -22,14 +22,14 @@ fun HomeNavGraph(navController: NavHostController) {
         route = NavGraphsDestinations.HOME,
         startDestination = BottomNavItems.Launches.route
     ) {
-        composable(NavigationDestinations.HomeNavGraph.LAUNCHES) {
+        composable(NavDestinations.HomeNavGraph.LAUNCHES) {
             LaunchesListScreen(
                 onLaunchClicked = { id, title ->
                     navController.navigateToLaunchDetails(id, title)
                 }
             )
         }
-        composable(NavigationDestinations.HomeNavGraph.FAVORITES) {
+        composable(NavDestinations.HomeNavGraph.FAVORITES) {
             Surface(modifier = Modifier.fillMaxSize()) {
                 Box {
                     Text(
