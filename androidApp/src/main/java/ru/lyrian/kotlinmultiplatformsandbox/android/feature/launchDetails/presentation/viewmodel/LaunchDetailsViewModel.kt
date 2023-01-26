@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchDetails.presentation.model.LaunchDetailsArgs
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchDetails.presentation.model.LaunchDetailsEvent
@@ -39,20 +40,29 @@ class LaunchDetailsViewModel(
     private fun loadLaunch(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
-                _state.value = _state.value.copy(isLoading = true, isError = false)
+                _state.update {
+                    it.copy(
+                        isLoading = true,
+                        isError = false
+                    )
+                }
                 launchesInteractor.getLaunchById(id)
-            }.onSuccess {
-                launch = it
-                _state.value = _state.value.copy(
-                    launch = launch,
-                    isLoading = false,
-                )
-            }.onFailure {
-                _state.value = _state.value.copy(
-                    isLoading = false,
-                    isError = true
-                )
-                _eventChannel.send(LaunchDetailsEvent.ShowErrorMessage("Error: ${it.localizedMessage}"))
+            }.onSuccess { rocketLaunch ->
+                launch = rocketLaunch
+                _state.update {
+                    it.copy(
+                        launch = launch,
+                        isLoading = false
+                    )
+                }
+            }.onFailure { throwable ->
+                _state.update {
+                    it.copy(
+                        isLoading = false,
+                        isError = true
+                    )
+                }
+                _eventChannel.send(LaunchDetailsEvent.ShowErrorMessage("Error: ${throwable.localizedMessage}"))
             }
         }
     }
