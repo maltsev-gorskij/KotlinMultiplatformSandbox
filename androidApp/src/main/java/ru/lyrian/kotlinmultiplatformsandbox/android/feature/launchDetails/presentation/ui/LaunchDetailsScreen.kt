@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -115,20 +114,14 @@ private fun LaunchDetailsContent(
             .pullRefresh(pullRefreshState),
     ) {
         when {
-            state.isLoading -> {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-
-            state.isError || state.launch == null -> {
+            state.isError -> {
                 Text(
                     text = "Oops...",
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
 
-            else -> {
+            state.launch != null -> {
                 LaunchDetails(
                     rocketLaunch = state.launch,
                     modifier = Modifier
