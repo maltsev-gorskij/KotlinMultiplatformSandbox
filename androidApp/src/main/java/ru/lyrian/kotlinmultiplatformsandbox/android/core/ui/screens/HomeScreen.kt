@@ -5,8 +5,8 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.bottomNavigation.BottomNavigationBar
-import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navGraphs.HomeNavGraph
+import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.bottomNavigation.BottomNavigationBar
+import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.navGraphs.HomeNavGraph
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable

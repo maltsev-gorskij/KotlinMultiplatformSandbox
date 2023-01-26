@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.bottomNavigation
+package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.bottomNavigation
 
 object BottomNavTitles {
     const val LIST_TITLE = "Launches"

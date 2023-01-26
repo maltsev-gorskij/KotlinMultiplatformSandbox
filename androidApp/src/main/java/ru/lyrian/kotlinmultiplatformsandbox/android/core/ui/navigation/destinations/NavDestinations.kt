@@ -1,6 +1,6 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation
+package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.destinations
 
-object NavigationDestinations {
+object NavDestinations {
    object HomeNavGraph {
       const val LAUNCHES = "launchesList"
       const val FAVORITES = "launchesFavorites"
@@ -9,8 +9,5 @@ object NavigationDestinations {
 
    object DetailsNavGraph {
       const val DETAILS = "launchDetails"
-
-      const val LAUNCH_ID_ARG = "launchId"
-      const val LAUNCH_TITLE_ARG = "launchTitle"
    }
 }

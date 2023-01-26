@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navGraphs
+package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.navGraphs
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.presentation.di
+package ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchesList.di
 
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module

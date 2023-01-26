@@ -1,4 +1,4 @@
-package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navGraphs
+package ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.navGraphs
 
 object NavGraphsDestinations {
     const val ROOT = "rootGraph"
