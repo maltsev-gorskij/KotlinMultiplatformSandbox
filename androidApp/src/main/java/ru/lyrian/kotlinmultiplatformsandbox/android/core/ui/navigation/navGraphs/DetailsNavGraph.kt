@@ -8,7 +8,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.destinations.NavDestinations
 import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.destinations.NavDestinationsArgs.Details.LAUNCH_ID_ARG
-import ru.lyrian.kotlinmultiplatformsandbox.android.core.ui.navigation.destinations.NavDestinationsArgs.Details.LAUNCH_TITLE_ARG
 import ru.lyrian.kotlinmultiplatformsandbox.android.feature.launchDetails.presentation.ui.LaunchDetailsScreen
 
 fun NavGraphBuilder.detailsNavGraph(
@@ -18,7 +17,7 @@ fun NavGraphBuilder.detailsNavGraph(
         route = NavGraphsDestinations.DETAILS,
         startDestination = NavDestinations.DetailsNavGraph.DETAILS
     ) {
-        composable("${NavDestinations.DetailsNavGraph.DETAILS}/{$LAUNCH_ID_ARG}/{$LAUNCH_TITLE_ARG}") {
+        composable("${NavDestinations.DetailsNavGraph.DETAILS}/{$LAUNCH_ID_ARG}") {
             LaunchDetailsScreen(
                 onNavigateBackClicked = onNavigateBack,
                 modifier = Modifier.fillMaxSize()
@@ -27,6 +26,6 @@ fun NavGraphBuilder.detailsNavGraph(
     }
 }
 
-fun NavController.navigateToLaunchDetails(launchId: String, launchTitle: String) {
-    this.navigate("${NavDestinations.DetailsNavGraph.DETAILS}/$launchId/$launchTitle")
+fun NavController.navigateToLaunchDetails(launchId: String) {
+    this.navigate("${NavDestinations.DetailsNavGraph.DETAILS}/$launchId")
 }

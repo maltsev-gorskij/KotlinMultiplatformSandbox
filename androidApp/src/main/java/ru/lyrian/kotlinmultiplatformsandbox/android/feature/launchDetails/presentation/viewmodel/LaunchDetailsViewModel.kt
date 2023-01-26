@@ -24,7 +24,7 @@ class LaunchDetailsViewModel(
     private val launchDetailsArgs = LaunchDetailsArgs(savedStateHandle)
     private var launch: RocketLaunch? = null
 
-    private val _state = MutableStateFlow(LaunchDetailsState(launchDetailsArgs.launchTitle))
+    private val _state = MutableStateFlow(LaunchDetailsState())
     val state: StateFlow<LaunchDetailsState> = _state.asStateFlow()
 
     private val _eventChannel: Channel<LaunchDetailsEvent> = Channel()

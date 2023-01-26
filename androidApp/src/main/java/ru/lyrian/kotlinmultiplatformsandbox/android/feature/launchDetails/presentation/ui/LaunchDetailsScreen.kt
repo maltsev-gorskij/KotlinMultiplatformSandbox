@@ -65,7 +65,10 @@ fun LaunchDetailsScreen(
 
     Scaffold(
         topBar = {
-            LaunchDetailsTopBar(title = state.title, onNavigateBackClicked = onNavigateBackClicked)
+            LaunchDetailsTopBar(
+                title = state.launch?.missionName,
+                onNavigateBackClicked = onNavigateBackClicked
+            )
         },
         modifier = modifier
     ) { paddingValues ->
@@ -81,13 +84,13 @@ fun LaunchDetailsScreen(
 
 @Composable
 private fun LaunchDetailsTopBar(
-    title: String,
+    title: String?,
     onNavigateBackClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     TopAppBar(
         title = {
-            Text(text = title, style = MaterialTheme.typography.h6)
+            Text(text = title.orEmpty(), style = MaterialTheme.typography.h6)
         },
         navigationIcon = {
             IconButton(onClick = onNavigateBackClicked) {
